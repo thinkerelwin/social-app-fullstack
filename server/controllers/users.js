@@ -35,7 +35,7 @@ export async function getUserFriends(req, res) {
   }
 }
 
-export async function addFriends(req, res) {
+export async function addFriend(req, res) {
   try {
     const { id, friendId } = req.params;
     const user = await User.findById(id);
@@ -72,7 +72,7 @@ export async function addFriends(req, res) {
   }
 }
 
-export async function removeFriends(req, res) {
+export async function removeFriend(req, res) {
   try {
     const { id: userId, friendId } = req.params;
     const user = await User.findById(userId);
@@ -81,6 +81,24 @@ export async function removeFriends(req, res) {
     if (user.friends.includes(friendId)) {
       user.friends = user.friends.filter((id) => id !== friendId);
       friend.friends = friend.friends.filter((id) => id !== userId);
+
+      await user.save();
+      await friend.save();
+
+      const friends = await Promise.all(
+        user.friends.map((friendId) => User.findById(friendId))
+      );
+
+      const formattedFriends = friends.map((friend) => ({
+        _id: friend._id,
+        firstName: friend.firstName,
+        lastName: friend.lastName,
+        occupation: friend.occupation,
+        location: friend.location,
+        picturePath: friend.picturePath,
+      }));
+
+      res.status(200).json(formattedFriends);
     } else {
       throw new Error("The user you want to remove isn't on your friend list");
     }
