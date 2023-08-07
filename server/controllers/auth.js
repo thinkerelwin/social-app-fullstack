@@ -4,6 +4,7 @@ import User from "../models/User.js";
 
 export async function register(req, res) {
   try {
+    mongoose.sanitizeFilter(req.body);
     const passwordHash = await argon2.hash(req.body.password);
 
     const newUser = new User({
@@ -28,6 +29,7 @@ export async function register(req, res) {
 
 export async function login(req, res) {
   try {
+    mongoose.sanitizeFilter(req.body);
     const user = await User.findOne({ email: req.body.email });
 
     if (!user) {

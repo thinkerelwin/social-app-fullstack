@@ -2,8 +2,8 @@ import User from "../models/User.js";
 
 export async function getUser(req, res) {
   try {
-    const { id } = req.params;
-    const user = await User.findById(id);
+    mongoose.sanitizeFilter(req.params);
+    const user = await User.findById(req.params.id);
 
     res.status(200).json(user);
   } catch (error) {
@@ -13,8 +13,8 @@ export async function getUser(req, res) {
 
 export async function getUserFriends(req, res) {
   try {
-    const { id } = req.params;
-    const user = await User.findById(id);
+    mongoose.sanitizeFilter(req.params);
+    const user = await User.findById(req.params.id);
 
     const friends = await Promise.all(
       user.friends.map((friendId) => User.findById(friendId))
@@ -37,6 +37,7 @@ export async function getUserFriends(req, res) {
 
 export async function addFriend(req, res) {
   try {
+    mongoose.sanitizeFilter(req.params);
     const { id, friendId } = req.params;
     const user = await User.findById(id);
     const friend = await User.findById(friendId);
@@ -74,6 +75,7 @@ export async function addFriend(req, res) {
 
 export async function removeFriend(req, res) {
   try {
+    mongoose.sanitizeFilter(req.params);
     const { id: userId, friendId } = req.params;
     const user = await User.findById(userId);
     const friend = await User.findById(friendId);

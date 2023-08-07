@@ -15,8 +15,6 @@ router.get("/:id/friends", verifyToken, getUserFriends);
 
 router.post("/:id/:friendId", verifyToken, addFriend);
 
-// TODO maybe adding patch for friends?
-
 router.delete("/:id/:friendId", verifyToken, removeFriend);
 
 export default router;
