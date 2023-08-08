@@ -16,6 +16,10 @@ import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
 
+import User from "./models/User.js";
+import Post from "./models/Post.js";
+import { users, posts } from "./mockData/index.js";
+
 // TODO: change to use TS instead
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -55,6 +59,9 @@ const PORT = process.env.PORT || 3010;
 try {
   await mongoose.connect(process.env.MONGO_DB_URL);
   app.listen(PORT, () => console.log(`Server Porrt: ${PORT}`));
+
+  // User.insertMany(users);
+  // Post.insertMany(posts);
 } catch (error) {
   console.error(`${error}, didn't connect`);
 }
