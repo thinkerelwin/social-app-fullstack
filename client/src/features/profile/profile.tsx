@@ -1,9 +1,9 @@
 import React from "react";
 
-function profile() {
-  return <div>profile</div>;
+function Profile() {
+  return <div>Profile</div>;
 }
 
-profile.propTypes = {};
+Profile.propTypes = {};
 
-export default profile;
+export default Profile;

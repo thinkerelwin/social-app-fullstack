@@ -1,9 +1,9 @@
 import React from "react";
 
-function login() {
-  return <div>login</div>;
+function Login() {
+  return <div>Login</div>;
 }
 
-login.propTypes = {};
+Login.propTypes = {};
 
-export default login;
+export default Login;

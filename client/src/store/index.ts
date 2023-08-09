@@ -1,22 +1,34 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
-const initialState = {
-  themeMode: "light",
-  user: null,
-  token: null,
-  posts: [],
-};
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-export const authSlice = createSlice({
-  name: "auth",
-  initialState,
-  reducers: {
-    setThemeMode: (state) => {
-      state.themeMode = state.themeMode === "light" ? "dark" : "light";
-    },
-    setLogin: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-    },
-  },
+import authSliceReducer from "./authSlice";
+
+const persistConfig = { key: "root", storage, version: 1 };
+const persistedReducer = persistReducer(persistConfig, authSliceReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;
+
+export default store;
