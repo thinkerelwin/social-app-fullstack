@@ -1,5 +1,35 @@
 import { authStateType } from "@/store/authSlice";
 
+declare module "@mui/material" {
+  export interface TypeBackground {
+    default: string;
+    paper: string;
+    alt: string;
+  }
+}
+
+declare module "@mui/material/styles/createPalette" {
+  interface Palette {
+    neutral: {
+      dark: string;
+      main: string;
+      mediumMain: string;
+      medium: string;
+      light: string;
+    };
+  }
+
+  interface PaletteOptions {
+    neutral?: {
+      dark: string;
+      main: string;
+      mediumMain: string;
+      medium: string;
+      light: string;
+    };
+  }
+}
+
 export const colorTokens = {
   grey: {
     0: "#FFFFFF",

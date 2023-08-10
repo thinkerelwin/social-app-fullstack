@@ -1,10 +1,12 @@
-import React from "react";
-// import PropTypes from "prop-types";
+import { Box } from "@mui/material";
+import Navbar from "@/features/navbar/Navbar";
 
 function Home() {
-  return <div>Home</div>;
+  return (
+    <Box>
+      <Navbar />
+    </Box>
+  );
 }
-
-Home.propTypes = {};
 
 export default Home;
