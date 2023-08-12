@@ -1,6 +1,7 @@
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import mongoose from "mongoose";
 
 export async function register(req, res) {
   try {
@@ -35,7 +36,9 @@ export async function login(req, res) {
     if (!user) {
       return res.status(400).json({ msg: "User doesn't exist." });
     }
-    const isMatch = await argon2.verify(req.body.password, user.password);
+    const isMatch = await argon2.verify(user.password, req.body.password);
+
+    console.log("login, isMatch", isMatch);
 
     if (!isMatch) {
       return res.status(400).json({ msg: "Invalid credentials." });
@@ -47,6 +50,7 @@ export async function login(req, res) {
 
     res.status(200).json({ token, user });
   } catch (error) {
+    console.log("login, isMatch error", error);
     res.status(500).json({ error: error.message });
   }
 }
