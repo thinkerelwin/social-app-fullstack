@@ -31,15 +31,15 @@ function Navbar() {
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.user);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-  const theme = useTheme();
+  const { palette } = useTheme();
 
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
 
-  const neutralLight = theme.palette.neutral.light;
-  const dark = theme.palette.neutral.dark;
-  const backgroundColor = theme.palette.background.default;
-  const primaryLight = theme.palette.primary.light;
-  const altColor = theme.palette.background.alt;
+  const neutralLight = palette.neutral.light;
+  const dark = palette.neutral.dark;
+  const backgroundColor = palette.background.default;
+  const primaryLight = palette.primary.light;
+  const altColor = palette.background.alt;
 
   const fullName = `${user?.firstName} ${user?.lastName}`;
 
@@ -78,7 +78,7 @@ function Navbar() {
       {isNonMobileScreens ? (
         <FlexBetween gap="2rem">
           <IconButton onClick={() => dispatch(setThemeMode())}>
-            {theme.palette.mode === "dark" ? (
+            {palette.mode === "dark" ? (
               <DarkMode
                 sx={{
                   fontSize: "25px",
@@ -174,7 +174,7 @@ function Navbar() {
                 fontSize: "25px",
               }}
             >
-              {theme.palette.mode === "dark" ? (
+              {palette.mode === "dark" ? (
                 <DarkMode
                   sx={{
                     fontSize: "25px",

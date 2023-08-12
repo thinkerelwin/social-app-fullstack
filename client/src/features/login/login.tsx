@@ -2,9 +2,9 @@ import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import LoginForm from "./LoginForm";
 
 function Login() {
-  const theme = useTheme();
+  const { palette } = useTheme();
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-  const altColor = theme.palette.background.alt;
+  const altColor = palette.background.alt;
 
   return (
     <Box>

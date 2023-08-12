@@ -1,17 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface authStateType {
+export interface User {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  picturePath: string;
+  friends: [];
+  location: string;
+  occupation: string;
+  viewedProfile: number;
+  impressions: number;
+}
+export interface AuthState {
   themeMode: "light" | "dark";
-  user: {
-    firstName: string;
-    lastName: string;
-    friends: [];
-  } | null;
+  user: User | null;
   token: string | null;
   posts: { _id: string }[];
 }
 
-const initialState: authStateType = {
+const initialState: AuthState = {
   themeMode: "light",
   user: null,
   token: null,

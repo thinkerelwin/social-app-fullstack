@@ -1,4 +1,4 @@
-import { authStateType } from "@/store/authSlice";
+import { AuthState } from "@/store/authSlice";
 
 declare module "@mui/material" {
   export interface TypeBackground {
@@ -61,7 +61,7 @@ export const colorTokens = {
 };
 
 // mui theme settings
-export const themeSettings = (mode: authStateType["themeMode"]) => {
+export const themeSettings = (mode: AuthState["themeMode"]) => {
   return {
     palette: {
       mode,

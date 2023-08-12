@@ -1,10 +1,11 @@
 import { useMemo } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 
 import { useAppSelector } from "@/store/hook";
+// TODO add test, husky
 
 import Home from "@/features/home/Home";
 import Login from "@/features/login/Login";
@@ -18,6 +19,9 @@ function App() {
     () => createTheme(themeSettings(themeMode)),
     [themeMode]
   );
+  const isAuth = useAppSelector(
+    (state) => typeof state.token === "string" && state.token.length > 0
+  );
 
   return (
     <div className="app">
@@ -26,8 +30,14 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/profile/:userId" element={<Profile />} />
+            <Route
+              path="/home"
+              element={isAuth ? <Home /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/profile/:userId"
+              element={isAuth ? <Profile /> : <Navigate to="/" />}
+            />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
