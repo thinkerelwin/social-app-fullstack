@@ -120,8 +120,6 @@ function LoginForm() {
 
     const loggedIn = await loggedInResponse.json();
 
-    console.log("loggedIn", loggedIn);
-
     onSubmitProps.resetForm();
 
     if (loggedIn) {
