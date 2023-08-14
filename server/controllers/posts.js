@@ -60,13 +60,14 @@ export async function likePost(req, res) {
     mongoose.sanitizeFilter(req.params);
     mongoose.sanitizeFilter(req.body);
 
+    const { userId } = req.body;
     const post = await Post.findById(req.params.id);
-    const isLiked = post.likes.get(req.body.userId);
+    const isLiked = post.likes.get(userId);
 
     if (isLiked) {
       post.likes.delete(userId);
     } else {
-      post.likes.set(req.body.userId, true);
+      post.likes.set(userId, true);
     }
 
     const updatedPost = await Post.findByIdAndUpdate(

@@ -36,13 +36,13 @@ export default function Friend({
     [friends, friendId]
   );
 
-  async function updateFriend() {
+  async function updateFriend(methodType: "POST" | "DELETE") {
     if (!user) return;
 
     const response = await fetch(
       `http://localhost:3010/users/${user._id}/${friendId}`,
       {
-        method: "PATCH",
+        method: methodType,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -79,7 +79,9 @@ export default function Friend({
         </Box>
       </FlexBetween>
       <IconButton
-        onClick={updateFriend}
+        onClick={() =>
+          isFriend ? updateFriend("DELETE") : updateFriend("POST")
+        }
         sx={{
           backgroundColor: primaryLight,
           padding: "0.6rem",

@@ -25,7 +25,7 @@ export default function PostWidget({
   const loggedInUserId = useAppSelector((state) => state.user?._id);
   const { palette } = useTheme();
 
-  const [isComment, setIsComment] = useState(false);
+  const [isComments, setIsComments] = useState(false);
 
   const mainColor = palette.neutral.main;
   const primaryMainColor = palette.primary.main;
@@ -94,9 +94,38 @@ export default function PostWidget({
                 <FavoriteBorderOutlined />
               )}
             </IconButton>
+            <Typography>{likeCount}</Typography>
+          </FlexBetween>
+          <FlexBetween gap="0.3rem">
+            <IconButton onClick={() => setIsComments(!isComments)}>
+              <ChatBubbleOutlineOutlined />
+            </IconButton>
+            <Typography>{post.comments.length}</Typography>
           </FlexBetween>
         </FlexBetween>
+        <IconButton>
+          <ShareOutlined />
+        </IconButton>
       </FlexBetween>
+      {isComments && (
+        <Box marginTop="0.5rem">
+          {post.comments.map((comment, index) => (
+            <Box key={`${authorName}-${index}`}>
+              <Divider />
+              <Typography
+                sx={{
+                  color: mainColor,
+                  margin: "0.5rem 0",
+                  paddingLeft: "1rem",
+                }}
+              >
+                {comment}
+              </Typography>
+            </Box>
+          ))}
+          <Divider />
+        </Box>
+      )}
     </WidgetWrapper>
   );
 }

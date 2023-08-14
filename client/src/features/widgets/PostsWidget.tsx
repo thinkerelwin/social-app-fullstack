@@ -9,7 +9,7 @@ export default function PostsWidget({
   isProfile = false,
 }: {
   userId: string;
-  isProfile: boolean;
+  isProfile?: boolean;
 }) {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.posts);
@@ -52,7 +52,9 @@ export default function PostsWidget({
   return (
     <>
       {posts.map((post) => {
-        return <PostWidget key={post._id} post={post} postUserId={userId} />;
+        return (
+          <PostWidget key={post._id} post={post} postUserId={post.userId} />
+        );
       })}
     </>
   );

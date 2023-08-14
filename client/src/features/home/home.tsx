@@ -5,6 +5,7 @@ import { useAppSelector } from "@/store/hook";
 import { User } from "@/store/authSlice";
 import UserWidget from "@/features/widgets/UserWidget";
 import MyPostWidget from "@/features/widgets/MyPostWidget";
+import PostsWidget from "../widgets/PostsWidget";
 
 function Home() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
@@ -28,6 +29,7 @@ function Home() {
           marginTop={isNonMobileScreens ? undefined : "2rem"}
         >
           <MyPostWidget picturePath={user.picturePath} />
+          <PostsWidget userId={user._id} />
         </Box>
         {isNonMobileScreens && <Box flexBasis="26%"></Box>}
       </Box>
