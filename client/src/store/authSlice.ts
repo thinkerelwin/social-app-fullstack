@@ -6,17 +6,30 @@ export interface User {
   lastName: string;
   email: string;
   picturePath: string;
-  friends: [];
+  friends: User[];
   location: string;
   occupation: string;
   viewedProfile: number;
   impressions: number;
 }
+
+export interface Post {
+  _id: string;
+  userId: string;
+  firstName: string;
+  lastName: string;
+  location: string;
+  description: string;
+  picturePath: string;
+  userPicturePath: string;
+  likes: { [key: string]: boolean };
+  comments: [];
+}
 export interface AuthState {
   themeMode: "light" | "dark";
   user: User | null;
   token: string | null;
-  posts: { _id: string }[];
+  posts: Post[];
 }
 
 const initialState: AuthState = {
@@ -53,7 +66,7 @@ export const authSlice = createSlice({
     },
     setPost: (state, action) => {
       const updatedPost = state.posts.map((post) => {
-        if (post._id === action.payload.post_id) {
+        if (post._id === action.payload.post._id) {
           return action.payload.post;
         } else {
           return post;
