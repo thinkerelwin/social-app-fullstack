@@ -5,7 +5,9 @@ import { useAppSelector } from "@/store/hook";
 import { User } from "@/store/authSlice";
 import UserWidget from "@/features/widgets/UserWidget";
 import MyPostWidget from "@/features/widgets/MyPostWidget";
-import PostsWidget from "../widgets/PostsWidget";
+import PostsWidget from "@/features/widgets/PostsWidget";
+import AdWidget from "@/features/widgets/AdWidget";
+import FriendListWidget from "../widgets/FriendListWidget";
 
 function Home() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
@@ -31,7 +33,14 @@ function Home() {
           <MyPostWidget picturePath={user.picturePath} />
           <PostsWidget userId={user._id} />
         </Box>
-        {isNonMobileScreens && <Box flexBasis="26%"></Box>}
+        {isNonMobileScreens && (
+          <Box flexBasis="26%">
+            <AdWidget />
+            <Box margin="2rem 0">
+              <FriendListWidget userId={user._id} />
+            </Box>
+          </Box>
+        )}
       </Box>
     </Box>
   );

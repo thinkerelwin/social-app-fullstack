@@ -16,9 +16,12 @@ import { useAppSelector } from "@/store/hook";
 import TwitterIcon from "@/assets/twitter.png";
 import LinkedInIcon from "@/assets/linkedin.png";
 
-interface User {
+export interface User {
+  _id: string;
   firstName: string;
   lastName: string;
+  email: string;
+  picturePath: string;
   location: string;
   occupation: string;
   viewedProfile: number;
@@ -30,7 +33,7 @@ export default function UserWidget({
   userId,
   picturePath,
 }: {
-  userId: string;
+  userId?: string;
   picturePath: string;
 }) {
   const [user, setUser] = useState<User | null>(null);
@@ -43,6 +46,8 @@ export default function UserWidget({
   const light = palette.primary.light;
 
   useEffect(() => {
+    if (!userId) return;
+
     async function getUser() {
       const response = await fetch(`http://localhost:3010/users/${userId}`, {
         method: "GET",
@@ -60,8 +65,6 @@ export default function UserWidget({
   }, [userId, token]);
 
   if (!user) return null;
-
-  console.log("user", user);
 
   return (
     <WidgetWrapper>

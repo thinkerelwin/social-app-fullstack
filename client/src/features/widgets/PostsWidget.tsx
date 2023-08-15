@@ -8,7 +8,7 @@ export default function PostsWidget({
   userId,
   isProfile = false,
 }: {
-  userId: string;
+  userId?: string;
   isProfile?: boolean;
 }) {
   const dispatch = useAppDispatch();
@@ -30,6 +30,8 @@ export default function PostsWidget({
     }
 
     async function getUserPosts() {
+      if (!userId) return;
+
       const response = await fetch(`http://localhost:3010/posts/${userId}`, {
         method: "GET",
         headers: {

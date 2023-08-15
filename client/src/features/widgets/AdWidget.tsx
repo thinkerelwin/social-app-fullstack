@@ -25,6 +25,14 @@ export default function AdWidget() {
         src="http://localhost:3010/assets/info4.jpeg"
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
+      <FlexBetween>
+        <Typography color={mainColor}>MikaCossmetics</Typography>
+        <Typography color={mediumColor}>mikacossmetics.com</Typography>
+      </FlexBetween>
+      <Typography color={mediumColor} margin="0.5rem 0">
+        Your pathway to stunning and immaculate beauty and make sure your skin
+        is exfoliating skin and shining like light.
+      </Typography>
     </WidgetWrapper>
   );
 }

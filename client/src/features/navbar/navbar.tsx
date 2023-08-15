@@ -115,7 +115,7 @@ function Navbar() {
                 backgroundColor: neutralLight,
                 width: "150px",
                 borderRadius: "0.25rem",
-                padding: "0.25rerm 1rem",
+                padding: "0.25rem 1rem",
                 "& .MuiSvgIcon-root": {
                   paddingRight: "0.25rem",
                   width: "3rem",
