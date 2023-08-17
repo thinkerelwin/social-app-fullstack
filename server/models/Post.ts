@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const PostSchema = mongoose.Schema(
+const PostSchema = new mongoose.Schema(
   {
     userId: {
       type: String,
@@ -21,6 +21,7 @@ const PostSchema = mongoose.Schema(
     likes: {
       type: Map,
       of: Boolean,
+      default: new Map(),
     },
     comments: {
       type: Array,

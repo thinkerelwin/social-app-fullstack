@@ -1,9 +1,11 @@
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
 import mongoose from "mongoose";
+import { Request, Response } from "express";
 
-export async function register(req, res) {
+import User from "../models/User";
+
+export async function register(req: Request, res: Response) {
   try {
     mongoose.sanitizeFilter(req.body);
     const passwordHash = await argon2.hash(req.body.password);
@@ -24,33 +26,40 @@ export async function register(req, res) {
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    const errorMessage =
+      error instanceof Error ? error.message : JSON.stringify(error);
+
+    res.status(500).json({ error: errorMessage });
   }
 }
 
-export async function login(req, res) {
+export async function login(req: Request, res: Response) {
   try {
     mongoose.sanitizeFilter(req.body);
     const user = await User.findOne({ email: req.body.email });
 
     if (!user) {
-      return res.status(400).json({ msg: "User doesn't exist." });
+      return res.status(400).json({ msg: "user doesn't exist." });
     }
     const isMatch = await argon2.verify(user.password, req.body.password);
-
-    console.log("login, isMatch", isMatch);
 
     if (!isMatch) {
       return res.status(400).json({ msg: "Invalid credentials." });
     }
 
+    if (!process.env.JWT_SECRET) {
+      throw new Error("JWT_SECRET variable doesn't exist");
+    }
+
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
-    delete user.password;
+    const { password, ...rest } = user;
 
-    res.status(200).json({ token, user });
+    res.status(200).json({ token, user: rest });
   } catch (error) {
-    console.log("login, isMatch error", error);
-    res.status(500).json({ error: error.message });
+    const errorMessage =
+      error instanceof Error ? error.message : JSON.stringify(error);
+
+    res.status(500).json({ error: errorMessage });
   }
 }

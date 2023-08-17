@@ -19,10 +19,13 @@ function Profile() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function getUser() {
       const response = await fetch(`http://localhost:3010/users/${userId}`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
+        signal: controller.signal,
       });
 
       const data = await response.json();
@@ -31,6 +34,10 @@ function Profile() {
     }
 
     getUser();
+
+    return () => {
+      controller.abort();
+    };
   }, [userId, token]);
 
   if (!user) return null;

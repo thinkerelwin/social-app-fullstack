@@ -16,9 +16,9 @@ import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
 
-import User from "./models/User.js";
-import Post from "./models/Post.js";
-import { users, posts } from "./mockData/index.js";
+// import User from "./models/User";
+// import Post from "./models/Post";
+import { users, posts } from "./mockData";
 
 // TODO: change to use TS instead, add static checker, test
 const __filename = fileURLToPath(import.meta.url);
@@ -57,6 +57,9 @@ app.use("/posts", postRoutes);
 const PORT = process.env.PORT || 3010;
 
 try {
+  if (!process.env.MONGO_DB_URL) {
+    throw new Error("can't found mongo db url");
+  }
   await mongoose.connect(process.env.MONGO_DB_URL);
   app.listen(PORT, () => console.log(`Server Porrt: ${PORT}`));
 

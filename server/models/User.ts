@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema(
     //   https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#implement-proper-password-strength-controls
     password: {
       type: String,
-      require: true,
+      required: true,
       min: 8,
       max: 64,
     },

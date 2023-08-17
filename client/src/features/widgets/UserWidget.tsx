@@ -12,22 +12,10 @@ import UserImage from "@/components/UserImage";
 import FlexBetween from "@/components/FlexBetween";
 import WidgetWrapper from "@/components/WidgetWrapper";
 import { useAppSelector } from "@/store/hook";
+import { User } from "@/store/authSlice";
 
 import TwitterIcon from "@/assets/twitter.png";
 import LinkedInIcon from "@/assets/linkedin.png";
-
-export interface User {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  picturePath: string;
-  location: string;
-  occupation: string;
-  viewedProfile: number;
-  impressions: number;
-  friends: string[];
-}
 
 export default function UserWidget({
   userId,
