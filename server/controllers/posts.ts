@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import { Request, Response } from "express";
 
-import Post from "../models/Post.js";
-import User from "../models/User.js";
+import Post from "../models/Post";
+import User from "../models/User";
 
 export async function createPost(req: Request, res: Response) {
   try {

@@ -1,12 +1,8 @@
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
-export interface GetUserAuthInfoRequest extends Request {
-  user: string | JwtPayload; // or any other type
-}
-
 export async function verifyToken(
-  req: GetUserAuthInfoRequest,
+  req: Request,
   res: Response,
   next: NextFunction
 ) {
@@ -14,7 +10,8 @@ export async function verifyToken(
     let token = req.header("Authorization");
 
     if (!token) {
-      return res.status(403).send("Access Denied");
+      res.status(403).send("Access Denied");
+      return;
     }
 
     if (token.startsWith("Bearer ")) {
