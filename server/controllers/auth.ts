@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import { Request, Response } from "express";
 
-import User from "../models/User";
+import User from "../models/User.ts";
 
 export async function register(req: Request, res: Response) {
   try {
@@ -36,7 +36,9 @@ export async function register(req: Request, res: Response) {
 export async function login(req: Request, res: Response) {
   try {
     mongoose.sanitizeFilter(req.body);
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email }).lean();
+
+    console.log("userCheck", user);
 
     if (!user) {
       return res.status(400).json({ msg: "user doesn't exist." });

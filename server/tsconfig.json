@@ -110,6 +110,8 @@
   "exclude": ["node_modules"],
   "ts-node": {
     // Tell ts-node CLI to install the --loader automatically, explained below
-    "esm": true
-  }
+    "esm": true,
+    "files": true
+  },
+  "files": ["types/express/index.d.ts"]
 }

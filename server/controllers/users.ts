@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Request, Response } from "express";
 
-import User from "../models/User.js";
+import User from "../models/User.ts";
 
 interface UserType {
   _id: mongoose.Types.ObjectId;

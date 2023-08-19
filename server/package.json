@@ -9,8 +9,7 @@
     "mongodb": "^5.6.0",
     "mongoose": "^7.2.1",
     "morgan": "^1.10.0",
-    "multer": "*",
-    "nodemon": "^2.0.22"
+    "multer": "*"
   },
   "name": "server",
   "version": "1.0.0",
@@ -19,7 +18,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon index.ts\""
   },
   "keywords": [],
   "author": "",
@@ -32,6 +31,7 @@
     "@types/morgan": "^1.9.4",
     "@types/multer": "^1.4.7",
     "concurrently": "^8.2.0",
+    "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }

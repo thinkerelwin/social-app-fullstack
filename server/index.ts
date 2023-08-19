@@ -8,19 +8,19 @@ import helmet from "helmet";
 import morgan from "morgan";
 import multer from "multer";
 
-import authRoutes from "./routes/auth.js";
-import userRoutes from "./routes/users.js";
-import postRoutes from "./routes/posts.js";
+import authRoutes from "./routes/auth.ts";
+import userRoutes from "./routes/users.ts";
+import postRoutes from "./routes/posts.ts";
 
-import { register } from "./controllers/auth.js";
-import { createPost } from "./controllers/posts.js";
-import { verifyToken } from "./middleware/auth.js";
+import { register } from "./controllers/auth.ts";
+import { createPost } from "./controllers/posts.ts";
+import { verifyToken } from "./middleware/auth.ts";
 
 // import User from "./models/User";
 // import Post from "./models/Post";
 import { users, posts } from "./mockData";
 
-// TODO: change to use TS instead, add static checker, test
+// TODO: add static checker, test
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
