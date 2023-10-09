@@ -18,7 +18,7 @@ import { verifyToken } from "./middleware/auth.ts";
 
 // import User from "./models/User";
 // import Post from "./models/Post";
-import { users, posts } from "./mockData";
+// import { users, posts } from "./mockData";
 
 // TODO: add static checker, test
 const __filename = fileURLToPath(import.meta.url);

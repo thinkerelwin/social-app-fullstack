@@ -18,7 +18,9 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon index.ts\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon index.ts\"",
+    "lint": "eslint **/*.ts",
+    "lint:fix": "eslint **/*.ts --fix"
   },
   "keywords": [],
   "author": "",
@@ -30,9 +32,14 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/morgan": "^1.9.4",
     "@types/multer": "^1.4.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
     "concurrently": "^8.2.0",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
     "nodemon": "^3.0.1",
+    "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.2.2"
   }
 }

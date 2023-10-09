@@ -55,6 +55,7 @@ export async function login(req: Request, res: Response) {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...rest } = user;
 
     res.status(200).json({ token, user: rest });

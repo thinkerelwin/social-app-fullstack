@@ -51,6 +51,7 @@ export async function getUser(req: Request, res: Response) {
       return res.status(400).json({ msg: "user doesn't exist." });
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...rest } = user;
 
     res.status(200).json(rest);
