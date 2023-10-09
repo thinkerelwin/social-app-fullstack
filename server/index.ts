@@ -20,7 +20,7 @@ import { verifyToken } from "./middleware/auth.ts";
 // import Post from "./models/Post";
 // import { users, posts } from "./mockData";
 
-// TODO: add static checker, test
+// TODO: add test
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 

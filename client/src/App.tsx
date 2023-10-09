@@ -5,7 +5,7 @@ import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 
 import { useAppSelector } from "@/store/hook";
-// TODO add test, husky
+// TODO add test
 
 import Home from "@/features/home/Home";
 import Login from "@/features/login/Login";
