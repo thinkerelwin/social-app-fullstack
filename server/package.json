@@ -19,7 +19,7 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon index.ts\"",
-    "lint": "eslint **/*.ts",
+    "lint": "eslint . --ext .ts",
     "lint:fix": "eslint **/*.ts --fix"
   },
   "keywords": [],

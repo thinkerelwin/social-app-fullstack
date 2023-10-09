@@ -1,0 +1,16 @@
+{
+  "name": "social-app-fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:client": "cd client && npm run lint",
+    "test:server": "cd server && npm run lint",
+    "prepare": "husky install"
+  },
+  "author": "Elwin",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}
