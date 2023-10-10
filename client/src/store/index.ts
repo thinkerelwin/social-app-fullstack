@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-
+import type { PreloadedState } from "@reduxjs/toolkit";
 import {
   persistReducer,
   FLUSH,
@@ -16,18 +16,24 @@ import authSliceReducer from "./authSlice";
 const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authSliceReducer);
 
-const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
-});
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  return configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }),
+    preloadedState,
+  });
+};
+
+const store = setupStore();
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof persistedReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
 
