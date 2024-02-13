@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import type { PreloadedState } from "@reduxjs/toolkit";
 import {
   persistReducer,
   FLUSH,
@@ -16,7 +15,7 @@ import authSliceReducer from "./authSlice";
 const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authSliceReducer);
 
-export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+export const setupStore = (preloadedState?: RootState) => {
   return configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
