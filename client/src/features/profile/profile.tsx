@@ -8,7 +8,7 @@ import FriendListWidget from "@/features/widgets/FriendListWidget";
 import MyPostWidget from "@/features/widgets/MyPostWidget";
 import PostsWidget from "@/features/widgets/PostsWidget";
 import UserWidget from "@/features/widgets/UserWidget";
-import { User } from "@/features/widgets/UserWidget";
+import { User } from "@/store/authSlice";
 
 function Profile() {
   const token = useAppSelector((state) => state.token);
@@ -22,15 +22,23 @@ function Profile() {
     const controller = new AbortController();
 
     async function getUser() {
-      const response = await fetch(`http://localhost:3010/users/${userId}`, {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-        signal: controller.signal,
-      });
+      try {
+        const response = await fetch(`http://localhost:3010/users/${userId}`, {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+          signal: controller.signal,
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      setUser(data);
+        setUser(data);
+      } catch (error: unknown) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          // no action needed
+        } else {
+          console.error("Error:", error);
+        }
+      }
     }
 
     getUser();
