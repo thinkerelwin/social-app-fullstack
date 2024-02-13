@@ -10,10 +10,10 @@ interface UserType {
   email: string;
   picturePath: string;
   friends: UserType[];
-  location?: string | undefined;
-  occupation?: string | undefined;
-  viewedProfile?: number | undefined;
-  impressions?: number | undefined;
+  location?: string | null | undefined;
+  occupation?: string | null | undefined;
+  viewedProfile?: number | null | undefined;
+  impressions?: number | null | undefined;
 }
 
 type Friend = Pick<
