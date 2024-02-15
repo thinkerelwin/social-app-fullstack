@@ -91,6 +91,7 @@ function LoginForm() {
 
     formData.append("picturePath", values.picture.name);
     // TODO change this to actual server, error handling(ex: when user type wrong password)
+    // TODO scan the repo with sonarQube
     const savedUserResponse = await fetch(
       "http://localhost:3010/auth/register",
       {

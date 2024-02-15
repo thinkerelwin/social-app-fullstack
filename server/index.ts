@@ -1,3 +1,6 @@
+// no need to compile ts files to js now.
+// https://github.com/TypeStrong/ts-node/issues/104#issuecomment-1941702624
+
 import path from "path";
 import { fileURLToPath } from "url";
 import express from "express";
