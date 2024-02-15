@@ -23,11 +23,14 @@ function Profile() {
 
     async function getUser() {
       try {
-        const response = await fetch(`http://localhost:3010/users/${userId}`, {
-          method: "GET",
-          headers: { Authorization: `Bearer ${token}` },
-          signal: controller.signal,
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/users/${userId}`,
+          {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` },
+            signal: controller.signal,
+          }
+        );
 
         const data = await response.json();
 

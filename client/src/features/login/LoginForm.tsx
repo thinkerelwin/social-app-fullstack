@@ -93,7 +93,7 @@ function LoginForm() {
     // TODO change this to actual server, error handling(ex: when user type wrong password)
     // TODO scan the repo with sonarQube
     const savedUserResponse = await fetch(
-      "http://localhost:3010/auth/register",
+      `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
       {
         method: "POST",
         body: formData,
@@ -113,11 +113,14 @@ function LoginForm() {
     values: LoginValuesType,
     onSubmitProps: FormikHelpers<LoginValuesType>
   ) {
-    const loggedInResponse = await fetch("http://localhost:3010/auth/login", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(values),
-    });
+    const loggedInResponse = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
+      {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(values),
+      }
+    );
 
     const loggedIn = await loggedInResponse.json();
 

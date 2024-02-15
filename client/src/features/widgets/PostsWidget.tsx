@@ -17,12 +17,15 @@ export default function PostsWidget({
 
   useEffect(() => {
     async function getPosts() {
-      const response = await fetch("http://localhost:3010/posts", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/posts`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const data = await response.json();
 
@@ -32,12 +35,15 @@ export default function PostsWidget({
     async function getUserPosts() {
       if (!userId) return;
 
-      const response = await fetch(`http://localhost:3010/posts/${userId}`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/posts/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const data = await response.json();
 

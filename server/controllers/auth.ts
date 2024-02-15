@@ -38,8 +38,6 @@ export async function login(req: Request, res: Response) {
     mongoose.sanitizeFilter(req.body);
     const user = await User.findOne({ email: req.body.email }).lean();
 
-    console.log("userCheck", user);
-
     if (!user) {
       return res.status(400).json({ msg: "user doesn't exist." });
     }

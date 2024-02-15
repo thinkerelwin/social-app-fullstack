@@ -40,7 +40,7 @@ export default function Friend({
     if (!user) return;
 
     const response = await fetch(
-      `http://localhost:3010/users/${user._id}/${friendId}`,
+      `${import.meta.env.VITE_BACKEND_URL}/users/${user._id}/${friendId}`,
       {
         method: methodType,
         headers: {

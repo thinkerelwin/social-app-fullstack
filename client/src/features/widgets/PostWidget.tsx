@@ -39,7 +39,7 @@ export default function PostWidget({
 
   async function updateLike() {
     const response = await fetch(
-      `http://localhost:3010/posts/${post._id}/like`,
+      `${import.meta.env.VITE_BACKEND_URL}/posts/${post._id}/like`,
       {
         method: "PATCH",
         headers: {
@@ -77,7 +77,7 @@ export default function PostWidget({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:3010/assets/${post.picturePath}`}
+          src={`${import.meta.env.VITE_BACKEND_URL}/assets/${post.picturePath}`}
         />
       )}
       <FlexBetween marginTop="0.25rem">

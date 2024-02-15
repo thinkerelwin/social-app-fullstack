@@ -20,7 +20,7 @@ export default function FriendListWidget({ userId }: { userId?: string }) {
 
     async function getFriends() {
       const response = await fetch(
-        `http://localhost:3010/users/${userId}/friends`,
+        `${import.meta.env.VITE_BACKEND_URL}/users/${userId}/friends`,
         {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },

@@ -27,3 +27,6 @@ dist-ssr
 
 .nyc_output
 coverage
+
+.env
+.env.*
