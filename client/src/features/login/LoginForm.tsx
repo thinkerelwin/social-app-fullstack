@@ -90,7 +90,7 @@ function LoginForm() {
     }
 
     formData.append("picturePath", values.picture.name);
-    // TODO change this to actual server, error handling(ex: when user type wrong password)
+    // TODO error handling(ex: when user type wrong password)
     // TODO scan the repo with sonarQube
     const savedUserResponse = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
