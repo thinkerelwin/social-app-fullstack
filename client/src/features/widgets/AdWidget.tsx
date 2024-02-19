@@ -19,11 +19,16 @@ export default function AdWidget() {
         <Typography color={mediumColor}>Create Ad</Typography>
       </FlexBetween>
       <img
-        width="100%"
-        height="auto"
+        width="280"
+        height="180"
         alt="ad"
         src={`${import.meta.env.VITE_BACKEND_URL}/assets/info4.jpeg`}
-        style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
+        style={{
+          borderRadius: "0.75rem",
+          margin: "0.75rem 0",
+          width: "100%",
+          height: "auto",
+        }}
       />
       <FlexBetween>
         <Typography color={mainColor}>MikaCossmetics</Typography>

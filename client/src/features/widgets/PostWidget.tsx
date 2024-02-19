@@ -73,17 +73,22 @@ export default function PostWidget({
       </Typography>
       {post.picturePath && (
         <img
-          width="100%"
-          height="auto"
+          width="480"
+          height="320"
           alt="post"
-          style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
+          style={{
+            borderRadius: "0.75rem",
+            marginTop: "0.75rem",
+            width: "100%",
+            height: "auto",
+          }}
           src={`${import.meta.env.VITE_BACKEND_URL}/assets/${post.picturePath}`}
         />
       )}
       <FlexBetween marginTop="0.25rem">
         <FlexBetween gap="1rem">
           <FlexBetween gap="0.3rem">
-            <IconButton onClick={updateLike}>
+            <IconButton onClick={updateLike} aria-label="like">
               {isLiked ? (
                 <FavoriteOutlined
                   sx={{
@@ -97,13 +102,16 @@ export default function PostWidget({
             <Typography>{likeCount}</Typography>
           </FlexBetween>
           <FlexBetween gap="0.3rem">
-            <IconButton onClick={() => setIsComments(!isComments)}>
+            <IconButton
+              onClick={() => setIsComments(!isComments)}
+              aria-label="friends"
+            >
               <ChatBubbleOutlineOutlined />
             </IconButton>
             <Typography>{post.comments.length}</Typography>
           </FlexBetween>
         </FlexBetween>
-        <IconButton>
+        <IconButton aria-label="share">
           <ShareOutlined />
         </IconButton>
       </FlexBetween>

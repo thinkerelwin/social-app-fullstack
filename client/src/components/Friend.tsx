@@ -86,6 +86,7 @@ export default function Friend({
           backgroundColor: primaryLight,
           padding: "0.6rem",
         }}
+        aria-label="update friend"
       >
         {isFriend ? (
           <PersonRemoveOutlined

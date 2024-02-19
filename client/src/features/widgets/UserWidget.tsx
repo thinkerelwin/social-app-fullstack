@@ -151,7 +151,7 @@ export default function UserWidget({
         </Typography>
         <FlexBetween gap="1rem" marginBottom="0.5rem">
           <FlexBetween gap="1rem">
-            <img src={TwitterIcon} alt="twitter" />
+            <img width="25" height="25" src={TwitterIcon} alt="twitter" />
             <Box>
               <Typography color={mainColor} fontWeight="500">
                 Twitter
@@ -170,7 +170,7 @@ export default function UserWidget({
 
         <FlexBetween gap="1rem">
           <FlexBetween gap="1rem">
-            <img src={LinkedInIcon} alt="linkedin" />
+            <img width="25" height="25" src={LinkedInIcon} alt="linkedin" />
             <Box>
               <Typography color={mainColor} fontWeight="500">
                 LinkedIn

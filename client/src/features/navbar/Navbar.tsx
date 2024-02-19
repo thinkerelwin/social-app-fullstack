@@ -136,6 +136,7 @@ function Navbar() {
       ) : (
         <IconButton
           onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
+          aria-label="hamburger menu"
         >
           <Menu />
         </IconButton>

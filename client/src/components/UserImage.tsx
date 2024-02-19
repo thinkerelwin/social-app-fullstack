@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 
 export default function UserImage({
   image,
-  size = "60px",
+  size = "60",
 }: {
   image: string;
   size?: string;
