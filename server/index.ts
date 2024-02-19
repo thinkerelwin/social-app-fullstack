@@ -31,12 +31,23 @@ dotenv.config();
 
 const app = express();
 
+console.log("env", process.env.NODE_ENV);
+
+const whitelist = ["https://soical-app.netlify.app/"];
+
 app.use(express.json({ limit: "30mb" }));
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors()); // TODO: add whitelist
+app.use(
+  cors({
+    origin:
+      process.env.NODE_ENV === "production"
+        ? whitelist
+        : ["http://localhost:5173"],
+  })
+);
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 const storage = multer.diskStorage({

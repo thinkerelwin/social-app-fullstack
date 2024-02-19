@@ -17,7 +17,7 @@
   "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "start": "node --loader ts-node/esm index.ts",
+    "start": "NODE_ENV=production node --loader ts-node/esm index.ts",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon index.ts\"",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
