@@ -7,10 +7,10 @@ import PostWidget from "./PostWidget";
 export default function PostsWidget({
   userId,
   isProfile = false,
-}: {
+}: Readonly<{
   userId?: string;
   isProfile?: boolean;
-}) {
+}>) {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.posts);
   const token = useAppSelector((state) => state.token);

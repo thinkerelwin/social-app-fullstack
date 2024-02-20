@@ -68,7 +68,7 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
-const PORT = process.env.PORT || 3010;
+const PORT = process.env.PORT ?? 3010;
 
 try {
   if (!process.env.MONGO_DB_URL) {

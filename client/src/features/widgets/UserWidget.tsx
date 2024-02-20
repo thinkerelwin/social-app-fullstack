@@ -20,10 +20,10 @@ import LinkedInIcon from "@/assets/linkedin.png";
 export default function UserWidget({
   userId,
   picturePath,
-}: {
+}: Readonly<{
   userId?: string;
   picturePath: string;
-}) {
+}>) {
   const [user, setUser] = useState<User | null>(null);
   const { palette } = useTheme();
   const navigate = useNavigate();

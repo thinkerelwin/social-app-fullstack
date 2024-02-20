@@ -26,7 +26,11 @@ import WidgetWrapper from "@/components/WidgetWrapper";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { User, setPosts } from "@/store/authSlice";
 
-export default function MyPostWidget({ picturePath }: { picturePath: string }) {
+export default function MyPostWidget({
+  picturePath,
+}: {
+  readonly picturePath: string;
+}) {
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState<null | File>(null);
   const [post, setPost] = useState("");

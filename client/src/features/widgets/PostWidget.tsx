@@ -16,10 +16,10 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 export default function PostWidget({
   post,
   postUserId,
-}: {
+}: Readonly<{
   post: Post;
   postUserId: string;
-}) {
+}>) {
   const dispatch = useAppDispatch();
   const token = useAppSelector((state) => state.token);
   const loggedInUserId = useAppSelector((state) => state.user?._id);

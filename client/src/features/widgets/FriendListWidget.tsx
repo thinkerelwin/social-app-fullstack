@@ -6,7 +6,11 @@ import WidgetWrapper from "@/components/WidgetWrapper";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { setFriends } from "@/store/authSlice";
 
-export default function FriendListWidget({ userId }: { userId?: string }) {
+export default function FriendListWidget({
+  userId,
+}: {
+  readonly userId?: string;
+}) {
   const dispatch = useAppDispatch();
   const { palette } = useTheme();
 

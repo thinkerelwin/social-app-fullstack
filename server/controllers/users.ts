@@ -10,10 +10,10 @@ interface UserType {
   email: string;
   picturePath: string;
   friends: UserType[];
-  location?: string | null | undefined;
-  occupation?: string | null | undefined;
-  viewedProfile?: number | null | undefined;
-  impressions?: number | null | undefined;
+  location?: string | null;
+  occupation?: string | null;
+  viewedProfile?: number | null;
+  impressions?: number | null;
 }
 
 type Friend = Pick<
@@ -33,8 +33,8 @@ function getFormattedFriends(friends: (FriendFromDatabase | null)[]) {
         _id: friend._id,
         firstName: friend.firstName,
         lastName: friend.lastName,
-        occupation: friend.occupation || "",
-        location: friend.location || "",
+        occupation: friend.occupation ?? "",
+        location: friend.location ?? "",
         picturePath: friend.picturePath,
       });
     }

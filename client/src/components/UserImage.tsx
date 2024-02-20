@@ -3,10 +3,10 @@ import { Box } from "@mui/material";
 export default function UserImage({
   image,
   size = "60",
-}: {
+}: Readonly<{
   image: string;
   size?: string;
-}) {
+}>) {
   return (
     <Box width={size} height={size}>
       <img

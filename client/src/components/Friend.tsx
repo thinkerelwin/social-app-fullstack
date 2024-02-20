@@ -13,12 +13,12 @@ export default function Friend({
   name,
   subtitle,
   userPicturePath,
-}: {
+}: Readonly<{
   friendId: string;
   name: string;
   subtitle: string;
   userPicturePath: string;
-}) {
+}>) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.user);
