@@ -18,6 +18,7 @@ import postRoutes from "./routes/posts.ts";
 import { register } from "./controllers/auth.ts";
 import { createPost } from "./controllers/posts.ts";
 import { verifyToken } from "./middleware/auth.ts";
+import { middlewareWrapper } from "./utils.ts";
 
 // import User from "./models/User";
 // import Post from "./models/Post";
@@ -59,10 +60,24 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 1000000, // explicitly set size limit: 1MB
+  },
+});
 
-app.post("/auth/register", upload.single("picture"), register);
-app.post("/posts", verifyToken, upload.single("picture"), createPost);
+app.post(
+  "/auth/register",
+  upload.single("picture"),
+  middlewareWrapper(register)
+);
+app.post(
+  "/posts",
+  middlewareWrapper(verifyToken),
+  upload.single("picture"),
+  middlewareWrapper(createPost)
+);
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);

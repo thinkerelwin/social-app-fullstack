@@ -7,14 +7,28 @@ import {
   removeFriend,
 } from "../controllers/users.ts";
 import { verifyToken } from "../middleware/auth.ts";
+import { middlewareWrapper } from "../utils.ts";
 
 const router = express.Router();
 
-router.get("/:id", verifyToken, getUser);
-router.get("/:id/friends", verifyToken, getUserFriends);
+router.get("/:id", middlewareWrapper(verifyToken), middlewareWrapper(getUser));
 
-router.post("/:id/:friendId", verifyToken, addFriend);
+router.get(
+  "/:id/friends",
+  middlewareWrapper(verifyToken),
+  middlewareWrapper(getUserFriends)
+);
 
-router.delete("/:id/:friendId", verifyToken, removeFriend);
+router.post(
+  "/:id/:friendId",
+  middlewareWrapper(verifyToken),
+  middlewareWrapper(addFriend)
+);
+
+router.delete(
+  "/:id/:friendId",
+  middlewareWrapper(verifyToken),
+  middlewareWrapper(removeFriend)
+);
 
 export default router;

@@ -10,7 +10,8 @@ export async function createPost(req: Request, res: Response) {
     const user = await User.findById(req.body.userId);
 
     if (!user) {
-      return res.status(400).json({ msg: "user doesn't exist." });
+      res.status(400).json({ msg: "user doesn't exist." });
+      return;
     }
 
     const newPost = new Post({
@@ -74,7 +75,8 @@ export async function likePost(req: Request, res: Response) {
     const post = await Post.findById(req.params.id);
 
     if (!post) {
-      return res.status(400).json({ msg: "post doesn't exist." });
+      res.status(400).json({ msg: "post doesn't exist." });
+      return;
     }
 
     const isLiked = post.likes.get(userId);

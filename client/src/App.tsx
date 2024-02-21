@@ -10,8 +10,6 @@ import Home from "@/features/home/Home";
 import Login from "@/features/login/Login";
 import Profile from "@/features/profile/Profile";
 
-import "./App.css";
-
 function App() {
   const themeMode = useAppSelector((state) => state.themeMode);
   const theme = useMemo(

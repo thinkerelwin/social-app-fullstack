@@ -1,4 +1,5 @@
 import argon2 from "argon2";
+import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import { Request, Response } from "express";
@@ -19,8 +20,8 @@ export async function register(req: Request, res: Response) {
       friends: req.body.friends,
       location: req.body.location,
       occupation: req.body.occupation,
-      viewedProfile: Math.floor(Math.random() * 1000), // dummy data
-      impressions: Math.floor(Math.random() * 1000), // dummy data
+      viewedProfile: Math.floor(crypto.randomBytes(1).readUInt32BE() * 1000), // dummy data
+      impressions: Math.floor(crypto.randomBytes(1).readUInt32BE() * 1000), // dummy data
     });
 
     const savedUser = await newUser.save();
@@ -39,12 +40,14 @@ export async function login(req: Request, res: Response) {
     const user = await User.findOne({ email: req.body.email }).lean();
 
     if (!user) {
-      return res.status(400).json({ msg: "user doesn't exist." });
+      res.status(400).json({ msg: "user doesn't exist." });
+      return;
     }
     const isMatch = await argon2.verify(user.password, req.body.password);
 
     if (!isMatch) {
-      return res.status(400).json({ msg: "Invalid credentials." });
+      res.status(400).json({ msg: "Invalid credentials." });
+      return;
     }
 
     if (!process.env.JWT_SECRET) {

@@ -48,7 +48,8 @@ export async function getUser(req: Request, res: Response) {
     const user = await User.findById(req.params.id);
 
     if (!user) {
-      return res.status(400).json({ msg: "user doesn't exist." });
+      res.status(400).json({ msg: "user doesn't exist." });
+      return;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -69,7 +70,8 @@ export async function getUserFriends(req: Request, res: Response) {
     const user = await User.findById(req.params.id);
 
     if (!user) {
-      return res.status(400).json({ msg: "user doesn't exist." });
+      res.status(400).json({ msg: "user doesn't exist." });
+      return;
     }
 
     const friends = await Promise.all(
@@ -95,9 +97,11 @@ export async function addFriend(req: Request, res: Response) {
     const friend = await User.findById(friendId);
 
     if (!user) {
-      return res.status(400).json({ msg: "user doesn't exist." });
+      res.status(400).json({ msg: "user doesn't exist." });
+      return;
     } else if (!friend) {
-      return res.status(400).json({ msg: "friend doesn't exist." });
+      res.status(400).json({ msg: "friend doesn't exist." });
+      return;
     }
 
     if (!user.friends.includes(friendId)) {
@@ -135,9 +139,11 @@ export async function removeFriend(req: Request, res: Response) {
     const friend = await User.findById(friendId);
 
     if (!user) {
-      return res.status(400).json({ msg: "user doesn't exist." });
+      res.status(400).json({ msg: "user doesn't exist." });
+      return;
     } else if (!friend) {
-      return res.status(400).json({ msg: "friend doesn't exist." });
+      res.status(400).json({ msg: "friend doesn't exist." });
+      return;
     }
 
     if (user.friends.includes(friendId)) {
