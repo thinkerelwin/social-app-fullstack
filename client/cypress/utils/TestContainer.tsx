@@ -6,7 +6,9 @@ import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "../../src/theme";
 import { useAppSelector } from "../../src/store/hook";
 
-export function TestContainer({ children }: { children: JSX.Element }) {
+export function TestContainer({
+  children,
+}: Readonly<{ children: JSX.Element }>) {
   const themeMode = useAppSelector((state) => state.themeMode);
   const theme = useMemo(
     () => createTheme(themeSettings(themeMode)),

@@ -1,0 +1,8 @@
+# sonarQube
+
+.scannerwork
+sonar-project.properties
+
+# vscode settings
+
+.vscode
