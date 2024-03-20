@@ -34,7 +34,7 @@ const app = express();
 
 console.log("env", process.env.NODE_ENV);
 
-const whitelist = ["https://soical-app.netlify.app/"];
+const whitelist = process.env.SITE_URL ? [process.env.SITE_URL] : [];
 
 app.use(express.json({ limit: "30mb" }));
 app.use(helmet());
