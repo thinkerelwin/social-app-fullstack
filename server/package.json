@@ -20,7 +20,8 @@
     "start": "NODE_ENV=production node --loader ts-node/esm index.ts",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon index.ts\"",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "lint:fix": "eslint . --ext .ts --fix",
+    "node20:start": "NODE_ENV=production node --import=./logError.js --loader ts-node/esm index.ts"
   },
   "keywords": [],
   "author": "",
