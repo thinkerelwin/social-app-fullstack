@@ -9,16 +9,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
-import multer from "multer";
 
 import authRoutes from "./routes/auth.ts";
 import userRoutes from "./routes/users.ts";
 import postRoutes from "./routes/posts.ts";
-
-import { register } from "./controllers/auth.ts";
-import { createPost } from "./controllers/posts.ts";
-import { verifyToken } from "./middleware/auth.ts";
-import { middlewareWrapper } from "./utils.ts";
 
 // import User from "./models/User";
 // import Post from "./models/Post";
@@ -50,34 +44,6 @@ app.use(
   })
 );
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
-
-const storage = multer.diskStorage({
-  destination: function destinationSettings(req, file, cb) {
-    cb(null, "public/assets");
-  },
-  filename: function filenameSettings(req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({
-  storage,
-  limits: {
-    fileSize: 1000000, // explicitly set size limit: 1MB
-  },
-});
-
-app.post(
-  "/auth/register",
-  upload.single("picture"),
-  middlewareWrapper(register)
-);
-app.post(
-  "/posts",
-  middlewareWrapper(verifyToken),
-  upload.single("picture"),
-  middlewareWrapper(createPost)
-);
 
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);

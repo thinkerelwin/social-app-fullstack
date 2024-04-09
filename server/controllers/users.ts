@@ -53,7 +53,7 @@ export async function getUser(req: Request, res: Response) {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...rest } = user;
+    const { password, ...rest } = user.toObject();
 
     res.status(200).json(rest);
   } catch (error) {
