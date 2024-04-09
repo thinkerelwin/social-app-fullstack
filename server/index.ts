@@ -1,8 +1,6 @@
 // no need to compile ts files to js now.
 // https://github.com/TypeStrong/ts-node/issues/104#issuecomment-1941702624
 
-import path from "path";
-import { fileURLToPath } from "url";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -10,18 +8,13 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 
-import authRoutes from "./routes/auth.ts";
-import userRoutes from "./routes/users.ts";
-import postRoutes from "./routes/posts.ts";
+import allRoutes from "./routes/index.ts";
 
 // import User from "./models/User";
 // import Post from "./models/Post";
 // import { users, posts } from "./mockData";
 
 // TODO: add test
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 dotenv.config();
 
 const app = express();
@@ -43,11 +36,9 @@ app.use(
         : ["http://localhost:5173"],
   })
 );
-app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
-app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
-app.use("/posts", postRoutes);
+const entryRoute = process.env.ENTRY_ROUTE ?? "/";
+app.use(entryRoute, allRoutes);
 
 const PORT = process.env.PORT ?? 3010;
 
