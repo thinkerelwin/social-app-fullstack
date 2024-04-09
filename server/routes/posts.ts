@@ -12,18 +12,14 @@ import { middlewareWrapper } from "../utils.ts";
 
 const router = express.Router();
 
-router.get(
-  "/",
-  middlewareWrapper(verifyToken),
-  middlewareWrapper(getFeedPosts)
-);
-
-router.post(
-  "/",
-  middlewareWrapper(verifyToken),
-  upload.single("picture"),
-  middlewareWrapper(createPost)
-);
+router
+  .route("/")
+  .get(middlewareWrapper(verifyToken), middlewareWrapper(getFeedPosts))
+  .post(
+    middlewareWrapper(verifyToken),
+    upload.single("picture"),
+    middlewareWrapper(createPost)
+  );
 
 router.get(
   "/:userId",

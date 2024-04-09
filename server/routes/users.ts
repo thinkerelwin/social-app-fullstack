@@ -19,16 +19,9 @@ router.get(
   middlewareWrapper(getUserFriends)
 );
 
-router.post(
-  "/:id/:friendId",
-  middlewareWrapper(verifyToken),
-  middlewareWrapper(addFriend)
-);
-
-router.delete(
-  "/:id/:friendId",
-  middlewareWrapper(verifyToken),
-  middlewareWrapper(removeFriend)
-);
+router
+  .route("/:id/:friendId")
+  .post(middlewareWrapper(verifyToken), middlewareWrapper(addFriend))
+  .delete(middlewareWrapper(verifyToken), middlewareWrapper(removeFriend));
 
 export default router;

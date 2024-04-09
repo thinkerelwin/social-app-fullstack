@@ -67,6 +67,7 @@ const initialValuesForLogin = {
 
 function LoginForm() {
   const [pageType, setPageType] = useState<PageType>(PageType.Login);
+  const [errorMessage, setErrorMessage] = useState("");
   const { palette } = useTheme();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -90,7 +91,7 @@ function LoginForm() {
     }
 
     formData.append("picturePath", values.picture.name);
-    // TODO error handling(ex: when user type wrong password)
+
     const savedUserResponse = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
       {
@@ -98,7 +99,7 @@ function LoginForm() {
         body: formData,
       }
     );
-
+    // TODO error handling(ex: when the length of password doesn't meet the requirement)
     const savedUser = await savedUserResponse.json();
 
     onSubmitProps.resetForm();
@@ -122,17 +123,24 @@ function LoginForm() {
     );
 
     const loggedIn = await loggedInResponse.json();
-
+    const { user, token, msg } = loggedIn;
     onSubmitProps.resetForm();
 
-    if (loggedIn) {
+    if (user && token) {
+      setErrorMessage("");
+
       dispatch(
         setLogin({
-          user: loggedIn.user,
-          token: loggedIn.token,
+          user,
+          token,
         })
       );
+
       navigate("/home");
+    } else {
+      const errorMessageToDisplay = msg || "an unexpected error occurred";
+
+      setErrorMessage(errorMessageToDisplay);
     }
   }
 
@@ -212,6 +220,17 @@ function LoginForm() {
               </Box>
 
               <Box>
+                {errorMessage && (
+                  <p
+                    style={{
+                      marginTop: "1.5rem",
+                      marginBottom: 0,
+                      color: "red",
+                    }}
+                  >
+                    {errorMessage}
+                  </p>
+                )}
                 <Button
                   fullWidth
                   type="submit"
