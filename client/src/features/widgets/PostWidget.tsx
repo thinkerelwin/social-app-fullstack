@@ -76,6 +76,7 @@ export default function PostWidget({
           width="480"
           height="320"
           alt="post"
+          loading="lazy"
           style={{
             borderRadius: "0.75rem",
             marginTop: "0.75rem",
