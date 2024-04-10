@@ -1,5 +1,4 @@
 import argon2 from "argon2";
-import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import { Request, Response } from "express";
@@ -10,6 +9,7 @@ export async function register(req: Request, res: Response) {
   try {
     mongoose.sanitizeFilter(req.body);
     const passwordHash = await argon2.hash(req.body.password);
+    console.log("before", JSON.stringify(req.body), passwordHash, "number");
 
     const newUser = new User({
       firstName: req.body.firstName,
@@ -20,9 +20,12 @@ export async function register(req: Request, res: Response) {
       friends: req.body.friends,
       location: req.body.location,
       occupation: req.body.occupation,
-      viewedProfile: Math.floor(crypto.randomBytes(1).readUInt32BE() * 1000), // dummy data
-      impressions: Math.floor(crypto.randomBytes(1).readUInt32BE() * 1000), // dummy data
+      viewedProfile: Math.floor(Math.random() * 1000), // dummy data
+      impressions: Math.floor(Math.random() * 1000), // dummy data
     });
+
+    console.log("body", JSON.stringify(req.body));
+    console.log("newUser", JSON.stringify(newUser.toObject()));
 
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);

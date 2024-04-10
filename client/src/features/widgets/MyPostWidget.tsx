@@ -94,7 +94,11 @@ export default function MyPostWidget({
           padding="1rem"
         >
           <Dropzone
-            accept={{ "image/*": [".jpg", ".jpeg", ".png"] }}
+            accept={{
+              "image/jpeg": [".jpg", ".jpeg"],
+              "image/png": [".png"],
+              "image/webp": [".webp"],
+            }}
             multiple={false}
             onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
           >

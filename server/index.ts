@@ -10,9 +10,10 @@ import morgan from "morgan";
 
 import allRoutes from "./routes/index.ts";
 
-// import User from "./models/User";
-// import Post from "./models/Post";
-// import { users, posts } from "./mockData";
+// seed
+// import User from "./models/User.ts";
+// import Post from "./models/Post.ts";
+// import { users, posts } from "./mockData/index.ts";
 
 // TODO: add test
 dotenv.config();
@@ -49,6 +50,7 @@ try {
   await mongoose.connect(process.env.MONGO_DB_URL);
   app.listen(PORT, () => console.log(`Server Porrt: ${PORT}`));
 
+  // seed
   // User.insertMany(users);
   // Post.insertMany(posts);
 } catch (error) {

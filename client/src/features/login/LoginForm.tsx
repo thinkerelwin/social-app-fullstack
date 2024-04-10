@@ -297,7 +297,7 @@ function LoginForm() {
                   label="First Name"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.firstName}
+                  value={values.firstName ?? ""}
                   name="firstName"
                   error={
                     Boolean(touched.firstName) && Boolean(errors.firstName)
@@ -311,7 +311,7 @@ function LoginForm() {
                   label="Last Name"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.lastName}
+                  value={values.lastName ?? ""}
                   name="lastName"
                   error={Boolean(touched.lastName) && Boolean(errors.lastName)}
                   helperText={touched.lastName && errors.lastName}
@@ -323,7 +323,7 @@ function LoginForm() {
                   label="Location"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.location}
+                  value={values.location ?? ""}
                   name="location"
                   error={Boolean(touched.location) && Boolean(errors.location)}
                   helperText={touched.location && errors.location}
@@ -335,7 +335,7 @@ function LoginForm() {
                   label="Occupation"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.occupation}
+                  value={values.occupation ?? ""}
                   name="occupation"
                   error={
                     Boolean(touched.occupation) && Boolean(errors.occupation)
@@ -352,7 +352,11 @@ function LoginForm() {
                   padding="1rem"
                 >
                   <Dropzone
-                    accept={{ "image/*": [".jpg", ".jpeg", ".png"] }}
+                    accept={{
+                      "image/jpeg": [".jpg", ".jpeg"],
+                      "image/png": [".png"],
+                      "image/webp": [".webp"],
+                    }}
                     multiple={false}
                     onDrop={(acceptedFiles) =>
                       setFieldValue("picture", acceptedFiles[0])
@@ -400,7 +404,7 @@ function LoginForm() {
                   type="password"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.password}
+                  value={values.password ?? " "}
                   name="password"
                   error={Boolean(touched.password) && Boolean(errors.password)}
                   helperText={touched.password && errors.password}

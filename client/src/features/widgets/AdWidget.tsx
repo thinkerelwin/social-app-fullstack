@@ -22,7 +22,7 @@ export default function AdWidget() {
         width="280"
         height="180"
         alt="ad"
-        src={`${import.meta.env.VITE_BACKEND_URL}/assets/info4.jpeg`}
+        src={`${import.meta.env.VITE_BACKEND_URL}/assets/info1.webp`}
         style={{
           borderRadius: "0.75rem",
           margin: "0.75rem 0",
