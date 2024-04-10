@@ -12,10 +12,6 @@ const router = express.Router();
 
 router.use(
   "/assets",
-  // (req, res, next) => {
-  //   res.set("Cache-Control", "private, no-cache");
-  //   next();
-  // },
   express.static(path.join(__dirname, "public/assets"), {
     setHeaders: function (res) {
       res.set("Cache-Control", "private, no-cache");
