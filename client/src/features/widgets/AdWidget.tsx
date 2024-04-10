@@ -31,12 +31,12 @@ export default function AdWidget() {
         }}
       />
       <FlexBetween>
-        <Typography color={mainColor}>MikaCossmetics</Typography>
-        <Typography color={mediumColor}>mikacossmetics.com</Typography>
+        <Typography color={mainColor}>ZenPlants</Typography>
+        <Typography color={mediumColor}>zenplants.com</Typography>
       </FlexBetween>
       <Typography color={mediumColor} margin="0.5rem 0">
-        Your pathway to stunning and immaculate beauty and make sure your skin
-        is exfoliating skin and shining like light.
+        Those tiny indoor plants can help you to relax, improves the quality of
+        indoor air.
       </Typography>
     </WidgetWrapper>
   );
