@@ -1,6 +1,6 @@
 ![App preview](https://github.com/thinkerelwin/social-app-fullstack/assets/25836139/a7cbe337-fd0d-4733-a3be-f69f8797a7bd)
 
-A monorepo that contains both the Front-end and Back-end project, it's a social media app with an advertisement on the side. 
+A demo app that contains both the Front-end and Back-end project, it's a social media app with an advertisement on the side. 
 
 **Guest account**: `zxcvs@mail.com`/`zxcvs`
 
@@ -17,6 +17,8 @@ A monorepo that contains both the Front-end and Back-end project, it's a social 
 - **Dark mode:** ease on your eyes.
 - **A test environment that is ready to use:** have a basic E2E and unit test cases, and you can get an E2E code coverage report with 'npm run cypress:coverage'(need to run E2E test once to collect the data).
 
+  *p.s. Cypress v13 is not fully compatible with vite v5 yet, you need to restart Cypress to change the testing type, or you will encounter an error otherwise*
+
 ## User Story
 
 - Can register a new user by clicking the "sign up" text on the bottom left corner of the login page
@@ -26,6 +28,12 @@ A monorepo that contains both the Front-end and Back-end project, it's a social 
 - The user can add other users as a friend by clicking the add button on the top right side of a post
 - The user can toggle the display of comments by clicking on the comment button located at the bottom of a post
 - The user can toggle dark mode by clicking the moon icon on the header
+
+## Room for improvement
+
+- Add unit test for back-end project
+- Add error handling in register activity(ex: when the length of password doesn't meet the requirement)
+- Update the number of friends on the current user section after adding or deleting a friend
 
 ## License
 

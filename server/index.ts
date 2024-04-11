@@ -15,7 +15,6 @@ import allRoutes from "./routes/index.ts";
 // import Post from "./models/Post.ts";
 // import { users, posts } from "./mockData/index.ts";
 
-// TODO: add test
 dotenv.config();
 
 const app = express();

@@ -99,7 +99,7 @@ function LoginForm() {
         body: formData,
       }
     );
-    // TODO error handling(ex: when the length of password doesn't meet the requirement)
+
     const savedUser = await savedUserResponse.json();
 
     onSubmitProps.resetForm();
