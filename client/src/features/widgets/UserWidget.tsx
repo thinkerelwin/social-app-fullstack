@@ -28,6 +28,7 @@ export default function UserWidget({
   const { palette } = useTheme();
   const navigate = useNavigate();
   const token = useAppSelector((state) => state.token);
+  const currentUser = useAppSelector((state) => state.user);
   const dark = palette.neutral.dark;
   const mediumColor = palette.neutral.medium;
   const mainColor = palette.neutral.main;
@@ -57,6 +58,12 @@ export default function UserWidget({
 
   if (!user) return null;
 
+  // the local user state doesn't get updated if the user add ore move friends on the home page
+  const numberOfFriends =
+    currentUser?._id === userId
+      ? currentUser?.friends.length
+      : user.friends.length;
+
   return (
     <WidgetWrapper>
       <FlexBetween
@@ -81,7 +88,7 @@ export default function UserWidget({
               {user.firstName} {user.lastName}
             </Typography>
             <Typography color={mediumColor}>
-              {user.friends?.length} friends
+              {numberOfFriends} friends
             </Typography>
           </Box>
         </FlexBetween>

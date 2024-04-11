@@ -1,10 +1,10 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import Friend from "@/components/Friend";
 import WidgetWrapper from "@/components/WidgetWrapper";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { setFriends } from "@/store/authSlice";
+import { User, setFriends } from "@/store/authSlice";
 
 export default function FriendListWidget({
   userId,
@@ -15,7 +15,11 @@ export default function FriendListWidget({
   const { palette } = useTheme();
 
   const token = useAppSelector((state) => state.token);
-  const friends = useAppSelector((state) => state.user?.friends);
+  const user = useAppSelector((state) => state.user);
+
+  const isCurrentUser = user?._id === userId;
+
+  const [localFriends, setLocalFriends] = useState<User[]>([]);
 
   const neutralDarkColor = palette.neutral.dark;
 
@@ -31,13 +35,19 @@ export default function FriendListWidget({
         }
       );
 
-      const data = await response.json();
+      const data: User[] = await response.json();
 
-      dispatch(setFriends({ friends: data }));
+      if (isCurrentUser) {
+        dispatch(setFriends({ friends: data }));
+      } else {
+        setLocalFriends(data);
+      }
     }
 
     getFriends();
-  }, [userId, token, dispatch]);
+  }, [isCurrentUser, userId, token, dispatch]);
+
+  const friends = isCurrentUser ? user?.friends : localFriends;
 
   return (
     <WidgetWrapper>
@@ -59,6 +69,7 @@ export default function FriendListWidget({
             name={`${friend.firstName} ${friend.lastName}`}
             subtitle={friend.occupation}
             userPicturePath={friend.picturePath}
+            actionable={isCurrentUser}
           />
         ))}
       </Box>

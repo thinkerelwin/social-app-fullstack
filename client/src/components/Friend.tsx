@@ -13,11 +13,13 @@ export default function Friend({
   name,
   subtitle,
   userPicturePath,
+  actionable,
 }: Readonly<{
   friendId: string;
   name: string;
   subtitle: string;
   userPicturePath: string;
+  actionable: boolean;
 }>) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -78,30 +80,32 @@ export default function Friend({
           </Typography>
         </Box>
       </FlexBetween>
-      <IconButton
-        onClick={() =>
-          isFriend ? updateFriend("DELETE") : updateFriend("POST")
-        }
-        sx={{
-          backgroundColor: primaryLight,
-          padding: "0.6rem",
-        }}
-        aria-label="update friend"
-      >
-        {isFriend ? (
-          <PersonRemoveOutlined
-            sx={{
-              color: primaryDark,
-            }}
-          />
-        ) : (
-          <PersonAddOutlined
-            sx={{
-              color: primaryDark,
-            }}
-          />
-        )}
-      </IconButton>
+      {actionable && (
+        <IconButton
+          onClick={() =>
+            isFriend ? updateFriend("DELETE") : updateFriend("POST")
+          }
+          sx={{
+            backgroundColor: primaryLight,
+            padding: "0.6rem",
+          }}
+          aria-label="update friend"
+        >
+          {isFriend ? (
+            <PersonRemoveOutlined
+              sx={{
+                color: primaryDark,
+              }}
+            />
+          ) : (
+            <PersonAddOutlined
+              sx={{
+                color: primaryDark,
+              }}
+            />
+          )}
+        </IconButton>
+      )}
     </FlexBetween>
   );
 }

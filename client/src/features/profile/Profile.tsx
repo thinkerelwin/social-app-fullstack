@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 
 import Navbar from "@/features/navbar/Navbar";
 import FriendListWidget from "@/features/widgets/FriendListWidget";
-import MyPostWidget from "@/features/widgets/MyPostWidget";
 import PostsWidget from "@/features/widgets/PostsWidget";
 import UserWidget from "@/features/widgets/UserWidget";
 import { User } from "@/store/authSlice";
@@ -72,8 +71,6 @@ function Profile() {
           flexBasis={isNonMobileScreens ? "42%" : undefined}
           marginTop={isNonMobileScreens ? undefined : "2rem"}
         >
-          <MyPostWidget picturePath={user.picturePath} />
-          <Box margin="2rem 0" />
           <PostsWidget userId={userId} isProfile />
         </Box>
       </Box>

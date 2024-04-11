@@ -33,7 +33,6 @@ A demo app that contains both the Front-end and Back-end project, it's a social 
 
 - Add unit test for back-end project
 - Add error handling in register activity(ex: when the length of password doesn't meet the requirement)
-- Update the number of friends on the current user section after adding or deleting a friend
 
 ## License
 

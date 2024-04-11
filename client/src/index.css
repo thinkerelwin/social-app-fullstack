@@ -8,3 +8,11 @@ body,
   height: 100%;
   font-family: "Rubik", sans-serif;
 }
+
+.my-post-widget {
+  margin-bottom: 2rem;
+}
+
+.post-widget:first-child {
+  margin-top: 0;
+}

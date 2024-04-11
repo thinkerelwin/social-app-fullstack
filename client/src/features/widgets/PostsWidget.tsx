@@ -58,12 +58,12 @@ export default function PostsWidget({
   }, [dispatch, isProfile, token, userId]);
 
   return (
-    <>
+    <div className="posts-widget">
       {posts.map((post) => {
         return (
           <PostWidget key={post._id} post={post} postUserId={post.userId} />
         );
       })}
-    </>
+    </div>
   );
 }

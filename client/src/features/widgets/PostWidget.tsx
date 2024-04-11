@@ -6,6 +6,7 @@ import {
 } from "@mui/icons-material";
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import FlexBetween from "@/components/FlexBetween";
 import Friend from "@/components/Friend";
@@ -21,8 +22,9 @@ export default function PostWidget({
   postUserId: string;
 }>) {
   const dispatch = useAppDispatch();
+  const { userId } = useParams();
   const token = useAppSelector((state) => state.token);
-  const loggedInUserId = useAppSelector((state) => state.user?._id);
+  const currentUserId = useAppSelector((state) => state.user?._id);
   const { palette } = useTheme();
 
   const [isComments, setIsComments] = useState(false);
@@ -31,11 +33,10 @@ export default function PostWidget({
   const primaryMainColor = palette.primary.main;
 
   const isLiked =
-    loggedInUserId !== undefined
-      ? Boolean(post.likes?.[loggedInUserId])
-      : false;
+    currentUserId !== undefined ? Boolean(post.likes?.[currentUserId]) : false;
   const likeCount = Object.keys(post.likes).length;
   const authorName = `${post.firstName} ${post.lastName}`;
+  const canTakeAction = currentUserId !== postUserId && userId !== postUserId;
 
   async function updateLike() {
     const response = await fetch(
@@ -46,7 +47,7 @@ export default function PostWidget({
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: loggedInUserId }),
+        body: JSON.stringify({ userId: currentUserId }),
       }
     );
 
@@ -56,12 +57,13 @@ export default function PostWidget({
   }
 
   return (
-    <WidgetWrapper margin="2rem 0">
+    <WidgetWrapper margin="2rem 0" className="post-widget">
       <Friend
         friendId={postUserId}
         name={authorName}
         subtitle={post.location}
         userPicturePath={post.userPicturePath}
+        actionable={canTakeAction}
       />
       <Typography
         color={mainColor}

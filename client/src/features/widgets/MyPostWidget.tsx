@@ -71,7 +71,7 @@ export default function MyPostWidget({
   }
 
   return (
-    <WidgetWrapper>
+    <WidgetWrapper className="my-post-widget">
       <FlexBetween gap="1.5rem">
         <UserImage image={picturePath} />
         <InputBase
