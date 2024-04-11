@@ -10,7 +10,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "cypress:open": "cypress open",
-    "cypress:run-unit": "cypress run --component"
+    "cypress:run-unit": "cypress run --component",
+    "cypress:coverage": "npx nyc report --reporter=text-summary"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
