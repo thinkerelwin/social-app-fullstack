@@ -1,4 +1,11 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+if (!process.env.GUEST_ACCOUNT_PASSWORD) {
+  throw new Error("can't find the password of the quest account");
+}
 
 const userIds = [
   new mongoose.Types.ObjectId(),
