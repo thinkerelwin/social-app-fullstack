@@ -9,6 +9,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 
 import allRoutes from "./routes/index.ts";
+import { scheduledTask } from "./seed.ts";
 
 dotenv.config();
 
@@ -42,7 +43,19 @@ try {
     throw new Error("can't found mongo db url");
   }
   await mongoose.connect(process.env.MONGO_DB_URL);
+
+  scheduledTask.start();
   app.listen(PORT, () => console.log(`Server Porrt: ${PORT}`));
 } catch (error) {
   console.error(`${error}, didn't connect`);
 }
+
+process.on("exit", function exit() {
+  scheduledTask.stop();
+  console.log("stop scheduledTask");
+});
+
+process.on("SIGNIT", function forceExit() {
+  scheduledTask.stop();
+  console.log("force stop scheduledTask");
+});

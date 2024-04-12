@@ -9,7 +9,6 @@ export async function register(req: Request, res: Response) {
   try {
     mongoose.sanitizeFilter(req.body);
     const passwordHash = await argon2.hash(req.body.password);
-    console.log("before", JSON.stringify(req.body), passwordHash, "number");
 
     const newUser = new User({
       firstName: req.body.firstName,
