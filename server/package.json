@@ -21,7 +21,8 @@
     "dev": "tsx watch index.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "node20:start": "NODE_ENV=production node --import=./logError.js --loader ts-node/esm index.ts"
+    "node20:start": "NODE_ENV=production node --import=./logError.js --loader ts-node/esm index.ts",
+    "seed": "tsx seed.ts"
   },
   "keywords": [],
   "author": "",
