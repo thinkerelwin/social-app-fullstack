@@ -23,9 +23,6 @@ export async function register(req: Request, res: Response) {
       impressions: Math.floor(Math.random() * 1000), // dummy data
     });
 
-    console.log("body", JSON.stringify(req.body));
-    console.log("newUser", JSON.stringify(newUser.toObject()));
-
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
   } catch (error) {
