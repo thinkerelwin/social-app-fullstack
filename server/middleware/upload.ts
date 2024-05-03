@@ -5,7 +5,10 @@ const storage = multer.diskStorage({
     cb(null, "public/assets");
   },
   filename: function filenameSettings(req, file, cb) {
-    cb(null, file.originalname);
+    // Address the issue of filenames being converted after uploading
+    // https://github.com/expressjs/multer/issues/1104
+    const fixedName = Buffer.from(file.originalname, "latin1").toString("utf8");
+    cb(null, fixedName);
   },
 });
 

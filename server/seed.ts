@@ -20,6 +20,6 @@ async function seed() {
   await Post.insertMany(posts);
 }
 
-const scheduledTask = new CronJob("0 0 */1 * * *", seed);
+const scheduledTask = new CronJob("0 0 */4 * * *", seed);
 
 export { scheduledTask };
