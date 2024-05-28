@@ -5,6 +5,7 @@ import authRoutes from "./auth.ts";
 import userRoutes from "./users.ts";
 import postRoutes from "./posts.ts";
 import { getDirname } from "../utils.ts";
+import { doubleCsrfProtection } from "../utils.ts";
 
 const __dirname = getDirname();
 
@@ -20,6 +21,7 @@ router.use(
 );
 
 router.use("/auth", authRoutes);
+router.use(doubleCsrfProtection);
 router.use("/users", userRoutes);
 router.use("/posts", postRoutes);
 

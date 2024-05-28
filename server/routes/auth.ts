@@ -1,7 +1,6 @@
 import express from "express";
 
-import { login } from "../controllers/auth.ts";
-import { register } from "../controllers/auth.ts";
+import { login, register } from "../controllers/auth.ts";
 import upload from "../middleware/upload.ts";
 import { middlewareWrapper } from "../utils.ts";
 

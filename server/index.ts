@@ -7,6 +7,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
 import allRoutes from "./routes/index.ts";
 import { scheduledTask } from "./seed.ts";
@@ -30,8 +31,10 @@ app.use(
       process.env.NODE_ENV === "production"
         ? whitelist
         : ["http://localhost:5173"],
+    credentials: true,
   })
 );
+app.use(cookieParser("Some secret"));
 
 const entryRoute = process.env.ENTRY_ROUTE ?? "/";
 app.use(entryRoute, allRoutes);

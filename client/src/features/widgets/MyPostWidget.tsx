@@ -39,6 +39,7 @@ export default function MyPostWidget({
   const { palette } = useTheme();
   const user = useAppSelector((state) => state.user as User);
   const token = useAppSelector((state) => state.token);
+  const csrfToken = useAppSelector((state) => state.csrfToken);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const mediumMainColor = palette.neutral.mediumMain;
   const mediumColor = palette.neutral.medium;
@@ -47,6 +48,7 @@ export default function MyPostWidget({
   const altColor = palette.background.alt;
 
   async function handlePost() {
+    if (!csrfToken) return;
     const formData = new FormData();
     formData.append("userId", user._id);
     formData.append("description", post);
@@ -58,7 +60,11 @@ export default function MyPostWidget({
 
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "x-csrf-token": csrfToken,
+      },
+      credentials: "include",
       body: formData,
     });
 

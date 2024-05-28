@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { Request, Response } from "express";
 
 import User from "../models/User.ts";
+import { generateToken } from "../utils.ts";
 
 export async function register(req: Request, res: Response) {
   try {
@@ -55,10 +56,12 @@ export async function login(req: Request, res: Response) {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
+    const csrfToken = generateToken(req, res);
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...rest } = user;
 
-    res.status(200).json({ token, user: rest });
+    res.status(200).json({ token, csrfToken, user: rest });
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : JSON.stringify(error);

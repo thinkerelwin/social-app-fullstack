@@ -29,6 +29,7 @@ export interface AuthState {
   themeMode: "light" | "dark";
   user: User | null;
   token: string | null;
+  csrfToken: string | null;
   posts: Post[];
 }
 
@@ -36,6 +37,7 @@ const initialState: AuthState = {
   themeMode: "light",
   user: null,
   token: null,
+  csrfToken: null,
   posts: [],
 };
 
@@ -49,10 +51,12 @@ export const authSlice = createSlice({
     setLogin: (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
+      state.csrfToken = action.payload.csrfToken;
     },
     setLogout: (state) => {
       state.user = null;
       state.token = null;
+      state.csrfToken = null;
     },
     setFriends: (state, action) => {
       if (state.user) {

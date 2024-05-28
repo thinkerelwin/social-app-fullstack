@@ -117,13 +117,16 @@ function LoginForm() {
       `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
       {
         method: "POST",
-        headers: { "Content-type": "application/json" },
+        headers: {
+          "Content-type": "application/json",
+        },
+        credentials: "include",
         body: JSON.stringify(values),
       }
     );
 
     const loggedIn = await loggedInResponse.json();
-    const { user, token, msg } = loggedIn;
+    const { user, token, csrfToken, msg } = loggedIn;
     onSubmitProps.resetForm();
 
     if (user && token) {
@@ -133,6 +136,7 @@ function LoginForm() {
         setLogin({
           user,
           token,
+          csrfToken,
         })
       );
 
