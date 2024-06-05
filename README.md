@@ -31,7 +31,7 @@ A demo app that contains both the Front-end and Back-end project, it's a social 
 
 - "npm run cypress:run-unit" to run unit test cases(need a local server running because there's no stub on the server response)
 - 'npm run cypress:coverage' to get an E2E code coverage report (need to run E2E test once to collect the data).
-- For tests written with Jest and React Testing Library, check ![here](https://github.com/thinkerelwin/stock-scout)
+- For tests written with Jest and React Testing Library, check [here](https://github.com/thinkerelwin/stock-scout)
 
 *p.s. Cypress v13 is not fully compatible with vite v5 yet, you need to restart Cypress to change the testing type, or you will encounter an error otherwise*
 
