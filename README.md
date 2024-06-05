@@ -15,9 +15,7 @@ A demo app that contains both the Front-end and Back-end project, it's a social 
 - **With code quality in mind:** auto lint codes with **Eslint**, **Prettier**, **Stylelint** before commit, and use **SonarQube** to improve code quality.
 
 - **Dark mode:** ease on your eyes.
-- **A test environment that is ready to use:** have a basic E2E and unit test cases, and you can get an E2E code coverage report with 'npm run cypress:coverage'(need to run E2E test once to collect the data).
-
-  *p.s. Cypress v13 is not fully compatible with vite v5 yet, you need to restart Cypress to change the testing type, or you will encounter an error otherwise*
+- **A test environment that is ready to use:** have a basic E2E and unit test cases written with Cypress
 
 ## User Story
 
@@ -29,10 +27,13 @@ A demo app that contains both the Front-end and Back-end project, it's a social 
 - The user can toggle the display of comments by clicking on the comment button located at the bottom of a post
 - The user can toggle dark mode by clicking the moon icon on the header
 
-## Room for improvement
+## Running tests
 
-- Add unit test for back-end project
-- Add error handling in register activity(ex: when the length of password doesn't meet the requirement)
+- "npm run cypress:run-unit" to run unit test cases(need a local server running because there's no stub on the server response)
+- 'npm run cypress:coverage' to get an E2E code coverage report (need to run E2E test once to collect the data).
+- For tests written with Jest and React Testing Library, check ![here](https://github.com/thinkerelwin/stock-scout)
+
+*p.s. Cypress v13 is not fully compatible with vite v5 yet, you need to restart Cypress to change the testing type, or you will encounter an error otherwise*
 
 ## License
 
